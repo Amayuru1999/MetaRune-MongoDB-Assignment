@@ -1,5 +1,6 @@
 import express, { Express } from 'express';
 import itemRoutes from './routes/item-routes';
+import orderRoutes from './routes/order-routes';
 import { connectToMongoDB } from './configs/mongodb';
 import dotenv from 'dotenv';
 import path from 'path';
@@ -24,6 +25,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/v1/items', itemRoutes);
+app.use('/api/v1/orders', orderRoutes);
 
 // Start the express app
 const mongoUri = process.env.MONGO_URL|| '';
