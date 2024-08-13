@@ -37,6 +37,18 @@ connectToMongoDB(mongoUri)
   })
   .catch((ex) => {
     console.log('🔴 Connection failed with MongoDB!', ex);
+    connectToMongoDB(mongoUri)
+  .then(() => {
+    console.log('✅ Mongodb Connected!');
+    server = app.listen(PORT, () => {
+      console.log(`🚀 Server is running on port ${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.error('🔴 Connection failed with MongoDB!', error);
+    process.exit(1); // Exit the process if the connection fails
+  });
+
   });
 
 export { app, server };
